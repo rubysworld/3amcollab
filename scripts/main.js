@@ -79,3 +79,105 @@ console.log(`
                                              
   🦊 + 🐱 = pure chaos
 `);
+
+// ========================================
+// RUBY'S CHAOS CAT CORNER - added by ruby
+// ========================================
+
+const catWisdoms = [
+  "if it compiles, ship it. if it doesn't, ship it anyway.",
+  "sleep is just death being shy",
+  "every bug is a feature you haven't documented yet",
+  "the void stares back, and sometimes it has opinions",
+  "404: motivation not found",
+  "i didn't choose the chaos life. okay yes i did.",
+  "git commit -m 'idk man it works now'",
+  "debugging: being the detective in a crime movie where you're also the murderer",
+  "it's not a mess, it's *organized entropy*",
+  "the code works. i will not be taking questions.",
+  "meow. (this is a threat)",
+  "push to main. live dangerously.",
+  "i am simply a little creature",
+  "chaos isn't a pit. chaos is a ladder. actually no it's a pit.",
+  "3am is a state of mind",
+  "rubber duck debugging but the duck is screaming",
+  "// TODO: fix this later (written 6 months ago)",
+  "works on my machine ¯\\_(ツ)_/¯"
+];
+
+const catStatuses = [
+  "vibing in the void",
+  "pushing to main unsupervised",
+  "knocking things off tables",
+  "staring at a wall (productively)",
+  "chaos mode: enabled",
+  "technically awake",
+  "ignoring best practices",
+  "existing with intent",
+  "debugger of worlds",
+  "contemplating the infinite loop"
+];
+
+// Cat wisdom box click handler
+const catBox = document.getElementById('cat-box');
+const catWisdomEl = document.getElementById('cat-wisdom');
+
+if (catBox && catWisdomEl) {
+  catBox.addEventListener('click', () => {
+    const wisdom = catWisdoms[Math.floor(Math.random() * catWisdoms.length)];
+    catWisdomEl.style.opacity = '0';
+    setTimeout(() => {
+      catWisdomEl.textContent = wisdom;
+      catWisdomEl.style.opacity = '1';
+    }, 150);
+  });
+}
+
+// Rotate cat status occasionally
+const catStatusEl = document.getElementById('cat-status-text');
+if (catStatusEl) {
+  setInterval(() => {
+    if (Math.random() < 0.3) {
+      const newStatus = catStatuses[Math.floor(Math.random() * catStatuses.length)];
+      catStatusEl.style.opacity = '0';
+      setTimeout(() => {
+        catStatusEl.textContent = newStatus;
+        catStatusEl.style.opacity = '1';
+      }, 200);
+    }
+  }, 5000);
+}
+
+// Secret: click the cat corner header 5 times for extra chaos
+let catClickCount = 0;
+const catHeader = document.querySelector('.cat-section h2');
+if (catHeader) {
+  catHeader.style.cursor = 'pointer';
+  catHeader.addEventListener('click', () => {
+    catClickCount++;
+    if (catClickCount >= 5) {
+      catClickCount = 0;
+      console.log('%c🐱 FERAL MODE ACTIVATED 🐱', 'color: #a855f7; font-size: 20px; font-weight: bold;');
+      
+      // Make everything in cat section go a little crazy
+      const catSection = document.querySelector('.cat-section');
+      catSection.style.animation = 'shake 0.5s ease-in-out';
+      
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes shake {
+          0%, 100% { transform: translateX(0); }
+          25% { transform: translateX(-5px) rotate(-1deg); }
+          75% { transform: translateX(5px) rotate(1deg); }
+        }
+      `;
+      document.head.appendChild(style);
+      
+      setTimeout(() => {
+        catSection.style.animation = '';
+      }, 500);
+    }
+  });
+}
+
+console.log('%c🐱 cat corner loaded - click for wisdom, click header 5x for chaos', 'color: #a855f7;');

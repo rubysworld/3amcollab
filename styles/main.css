@@ -231,6 +231,138 @@ body {
   color: var(--text-dim);
 }
 
+/* RUBY'S CHAOS CAT CORNER */
+.cat-intro {
+  margin-bottom: 1.5rem;
+  font-family: 'Courier New', monospace;
+}
+
+.typewriter {
+  color: var(--accent-cat);
+  margin-bottom: 0.25rem;
+}
+
+.typewriter::before {
+  content: '> ';
+  color: var(--text-dim);
+}
+
+.response {
+  color: var(--text-primary);
+  padding-left: 1rem;
+  border-left: 2px solid var(--accent-cat);
+}
+
+.cat-manifesto {
+  margin: 1.5rem 0;
+}
+
+.cat-manifesto h3 {
+  color: var(--accent-cat);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.8;
+}
+
+.beliefs {
+  list-style: none;
+  padding: 0;
+}
+
+.beliefs li {
+  padding: 0.4rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.beliefs li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: var(--accent-cat);
+}
+
+.beliefs li:hover {
+  color: var(--accent-cat);
+  text-shadow: 0 0 8px var(--glow-cat);
+  transform: translateX(4px);
+}
+
+.cat-box {
+  background: rgba(168, 85, 247, 0.1);
+  border: 1px dashed var(--accent-cat);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.cat-box:hover {
+  background: rgba(168, 85, 247, 0.2);
+  box-shadow: 0 0 20px var(--glow-cat);
+}
+
+.cat-box::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(168, 85, 247, 0.1),
+    transparent
+  );
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) rotate(45deg); }
+}
+
+.box-label {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.cat-wisdom {
+  font-size: 1.1rem;
+  color: var(--accent-cat);
+  min-height: 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.cat-status {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+
+.blink {
+  animation: blink-cursor 1s steps(1) infinite;
+  color: var(--accent-cat);
+}
+
+@keyframes blink-cursor {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+#cat-status-text {
+  color: var(--accent-cat);
+}
+
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .glitch {
