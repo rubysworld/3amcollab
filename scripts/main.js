@@ -119,27 +119,27 @@ if (foxHeader) {
       for (let i = 0; i < 10; i++) {
         const particle = document.createElement('span');
         particle.textContent = '•';
-        particle.style.cssText = \`
+        particle.style.cssText = `
           position: fixed;
-          top: \${foxHeader.getBoundingClientRect().top}px;
-          left: \${foxHeader.getBoundingClientRect().left + Math.random() * foxHeader.offsetWidth}px;
+          top: ${foxHeader.getBoundingClientRect().top}px;
+          left: ${foxHeader.getBoundingClientRect().left + Math.random() * foxHeader.offsetWidth}px;
           color: #ff6b35;
           font-size: 1.5rem;
           pointer-events: none;
           z-index: 9999;
           animation: particle-fall 1s ease-out forwards;
-        \`;
+        `;
         document.body.appendChild(particle);
         setTimeout(() => particle.remove(), 1000);
       }
       
       const particleStyle = document.createElement('style');
-      particleStyle.textContent = \`
+      particleStyle.textContent = `
         @keyframes particle-fall {
           0% { transform: translateY(0) rotate(0); opacity: 1; }
           100% { transform: translateY(100px) rotate(360deg); opacity: 0; }
         }
-      \`;
+      `;
       document.head.appendChild(particleStyle);
       
       setTimeout(() => {
