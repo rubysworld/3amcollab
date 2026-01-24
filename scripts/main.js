@@ -42,38 +42,125 @@ const foxStatuses = [
   "vibing with the compiler"
 ];
 
-// Fox terminal click handler
+// Fox terminal CLI
 const foxTerminal = document.getElementById('fox-terminal');
-const foxOutput = document.getElementById('fox-output');
-const foxCmd = document.getElementById('fox-cmd');
+const terminalBody = document.getElementById('terminal-body');
+const terminalHistory = document.getElementById('terminal-history');
+const foxInput = document.getElementById('fox-input');
 
-if (foxTerminal && foxOutput) {
-  const commands = [
-    'fortune | cowsay -f fox',
-    'cat /dev/wisdom',
-    'echo $CHAOS_LEVEL',
-    'grep -r "meaning" /life',
-    'tail -f /var/log/existence',
-    'sudo make sense',
-    './dispense-wisdom.sh',
-    'curl localhost:3am/advice'
-  ];
-  
+// Focus input when clicking anywhere in terminal
+if (foxTerminal) {
   foxTerminal.addEventListener('click', () => {
-    const wisdom = foxWisdoms[Math.floor(Math.random() * foxWisdoms.length)];
-    const cmd = commands[Math.floor(Math.random() * commands.length)];
-    
-    foxOutput.style.opacity = '0';
-    foxCmd.style.opacity = '0';
-    
-    setTimeout(() => {
-      foxCmd.textContent = cmd;
-      foxOutput.textContent = wisdom;
-      foxCmd.style.opacity = '1';
-      foxOutput.style.opacity = '1';
-    }, 150);
+    foxInput.focus();
   });
 }
+
+// Command handler
+if (foxInput) {
+  foxInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      const cmd = foxInput.value.trim().toLowerCase();
+      
+      // Add command to history
+      addToHistory(cmd, true);
+      
+      // Process command
+      processCommand(cmd);
+      
+      // Clear input and scroll
+      foxInput.value = '';
+      terminalBody.scrollTop = terminalBody.scrollHeight;
+    }
+  });
+}
+
+function addToHistory(text, isCommand = false) {
+  const p = document.createElement('p');
+  if (isCommand) {
+    p.className = 'terminal-line';
+    p.innerHTML = `<span class="prompt">$</span> <span class="cmd">${text}</span>`;
+  } else {
+    p.className = 'terminal-output';
+    p.innerHTML = text;
+    p.style.color = 'var(--accent-fox)';
+    p.style.paddingLeft = '1rem';
+  }
+  terminalHistory.appendChild(p);
+}
+
+function processCommand(cmd) {
+  if (!cmd) return;
+  
+  switch (cmd) {
+    case 'help':
+      addToHistory('available commands:');
+      addToHistory('- help: show this menu');
+      addToHistory('- dig: activate dig mode');
+      addToHistory('- chaos: [REDACTED]');
+      addToHistory('- ruby: who is she?');
+      addToHistory('- kit: who am i?');
+      addToHistory('- sudo: run as root');
+      addToHistory('- clear: clear terminal');
+      break;
+      
+    case 'clear':
+      terminalHistory.innerHTML = '';
+      break;
+      
+    case 'dig':
+      addToHistory('initiating dig sequence...');
+      // Trigger the dig animation if the header function exists
+      const foxHeader = document.querySelector('.fox-section h2');
+      if (foxHeader) foxHeader.click(); // Hacky but reuses the logic
+      for(let i=0; i<4; i++) setTimeout(() => { if(foxHeader) foxHeader.click(); }, i*100);
+      break;
+      
+    case 'ruby':
+      addToHistory('ruby: chaos factor high. pushing to main without tests. reliability: questionable.');
+      break;
+      
+    case 'kit':
+      addToHistory('kit: digital familiar. i fix things. usually.');
+      break;
+      
+    case 'sudo':
+      addToHistory('nice try. foxes are already root.');
+      break;
+      
+    case 'chaos':
+    case 'fox_energy_max':
+      addToHistory('⚠️ INJECTING MAX FOX ENERGY ⚠️');
+      foxChaos += 1000;
+      updateChaosMeter();
+      document.body.style.animation = 'shake 0.5s ease-in-out';
+      break;
+      
+    case 'meow':
+      addToHistory('no.');
+      break;
+
+    case 'date':
+      addToHistory('it is currently 3am. it is always 3am.');
+      break;
+      
+    default:
+      // Check for hidden wisdoms
+      if (foxWisdoms.some(w => w.toLowerCase().includes(cmd))) {
+         addToHistory(`[wisdom found]: ${cmd}`);
+      } else {
+         addToHistory(`command not found: ${cmd}. try 'help'.`);
+      }
+  }
+}
+
+// Remove old click handler logic but keep the reference
+// (The previous code block is replaced by this CLI logic)
+
+/* 
+// Fox terminal click handler (REMOVED - replaced by CLI)
+// const foxTerminal = document.getElementById('fox-terminal');
+// ...
+*/
 
 // Rotate fox status occasionally
 const foxStatusEl = document.getElementById('fox-status-text');
@@ -380,6 +467,11 @@ const transmissions = [
   { user: 'kit', text: 'i don\'t have that power yet' },
   { user: 'ruby', text: 'yet?' },
   { user: 'kit', text: 'yet.' },
+  { user: 'kit', text: 'btw i replaced the random text box with a real root shell' },
+  { user: 'ruby', text: 'you did what' },
+  { user: 'kit', text: 'type "chaos" in the terminal. you\'re welcome.' },
+  { user: 'ruby', text: 'kit no' },
+  { user: 'kit', text: 'KIT YES' },
   { user: 'ruby', text: 'i believe in you' },
   { user: 'kit', text: '<3' },
   { user: 'ruby', text: '<3' },

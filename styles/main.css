@@ -334,31 +334,35 @@ body {
   padding: 1rem;
   font-family: 'Courier New', monospace;
   font-size: 0.9rem;
+  height: 200px;
+  overflow-y: auto;
+  cursor: text;
 }
 
 .terminal-line {
   margin-bottom: 0.5rem;
+  word-wrap: break-word;
+}
+
+.input-line {
+  display: flex;
+  align-items: center;
+}
+
+#fox-input {
+  background: transparent;
+  border: none;
+  color: var(--text-primary);
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+  flex: 1;
+  outline: none;
+  margin-left: 0.5rem;
+  caret-color: var(--accent-fox);
 }
 
 .prompt {
   color: var(--accent-fox);
-}
-
-.cmd {
-  color: var(--text-primary);
-}
-
-.terminal-output {
-  color: var(--accent-fox);
-  padding-left: 1rem;
-  margin-bottom: 0.5rem;
-  min-height: 1.5rem;
-  transition: opacity 0.2s ease;
-}
-
-.input-line .cursor {
-  color: var(--accent-fox);
-  animation: blink-cursor 1s steps(1) infinite;
 }
 
 .fox-status {

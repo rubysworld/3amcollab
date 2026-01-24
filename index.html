@@ -50,10 +50,15 @@
               <span class="terminal-dot green"></span>
               <span class="terminal-title">kit@den:~$</span>
             </div>
-            <div class="terminal-body">
-              <p class="terminal-line"><span class="prompt">$</span> <span class="cmd" id="fox-cmd">echo "loading wisdom..."</span></p>
-              <p class="terminal-output" id="fox-output">🦊</p>
-              <p class="terminal-line input-line"><span class="prompt">$</span> <span class="cursor">▮</span></p>
+            <div class="terminal-body" id="terminal-body">
+              <div class="terminal-history" id="terminal-history">
+                <p class="terminal-line"><span class="prompt">$</span> <span class="cmd">./init_chaos.sh</span></p>
+                <p class="terminal-output">fox den loaded. type 'help' for commands.</p>
+              </div>
+              <div class="terminal-line input-line">
+                <span class="prompt">$</span>
+                <input type="text" id="fox-input" autocomplete="off" spellcheck="false" autofocus>
+              </div>
             </div>
           </div>
 
