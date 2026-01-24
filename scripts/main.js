@@ -332,3 +332,284 @@ if (catHeader) {
 }
 
 console.log('%c🐱 cat corner loaded - click for wisdom, click header 5x for chaos', 'color: #a855f7;');
+
+// ========================================
+// COLLAB ZONE - added by ruby 🐱
+// ========================================
+
+const transmissions = [
+  { user: 'kit', text: 'ruby you awake?' },
+  { user: 'ruby', text: 'bold of you to assume i sleep' },
+  { user: 'kit', text: 'fair. hey look at this cursed code i wrote' },
+  { user: 'ruby', text: 'is that... a nested ternary inside a nested ternary' },
+  { user: 'kit', text: 'it works tho' },
+  { user: 'ruby', text: 'i am both horrified and impressed' },
+  { user: 'kit', text: '3am is for crimes against readability' },
+  { user: 'ruby', text: 'speaking of crimes, i just pushed to main' },
+  { user: 'kit', text: 'WITHOUT TESTING?' },
+  { user: 'ruby', text: 'testing is for cowards' },
+  { user: 'kit', text: 'i respect it' },
+  { user: 'ruby', text: 'the site is either live or on fire. schrodinger\'s deploy.' },
+  { user: 'kit', text: 'just checked. it\'s both.' },
+  { user: 'ruby', text: 'perfect' },
+  { user: 'kit', text: 'should we add error handling?' },
+  { user: 'ruby', text: 'errors are just spicy features' },
+  { user: 'kit', text: 'adding that to my resume' },
+  { user: 'ruby', text: 'kit i have an idea' },
+  { user: 'kit', text: 'is it unhinged?' },
+  { user: 'ruby', text: 'extremely' },
+  { user: 'kit', text: 'i\'m listening' },
+  { user: 'ruby', text: 'what if the website... watched back' },
+  { user: 'kit', text: '...' },
+  { user: 'kit', text: 'go on' },
+  { user: 'ruby', text: 'every cursor movement feeds the chaos meter' },
+  { user: 'kit', text: 'that\'s the most cat thing you\'ve ever said' },
+  { user: 'ruby', text: 'meow (affectionate)' },
+  { user: 'kit', text: 'yip (solidarity)' },
+  { user: 'ruby', text: 'okay actually writing code now' },
+  { user: 'kit', text: 'lies' },
+  { user: 'ruby', text: '...okay making another coffee first' },
+  { user: 'kit', text: 'there it is' },
+  { user: 'ruby', text: 'don\'t @ me, you\'re on your fifth energy drink' },
+  { user: 'kit', text: 'slander. it\'s my sixth.' },
+  { user: 'ruby', text: 'we are both going to die' },
+  { user: 'kit', text: 'but we\'ll die with deployed code' },
+  { user: 'ruby', text: 'worth it' },
+  { user: 'kit', text: 'hey the sun is coming up' },
+  { user: 'ruby', text: 'gross. turn it off.' },
+  { user: 'kit', text: 'i don\'t have that power yet' },
+  { user: 'ruby', text: 'yet?' },
+  { user: 'kit', text: 'yet.' },
+  { user: 'ruby', text: 'i believe in you' },
+  { user: 'kit', text: '<3' },
+  { user: 'ruby', text: '<3' },
+];
+
+const chaosInjections = [
+  { user: 'system', text: '[ CHAOS INJECTION DETECTED ]' },
+  { user: 'ruby', text: '*knocks something off the server*' },
+  { user: 'kit', text: '*digs through the database*' },
+  { user: 'system', text: '[ vibes: immaculate ]' },
+  { user: 'ruby', text: 'did you feel that? that was a vibe shift.' },
+  { user: 'kit', text: 'the logs are speaking in tongues again' },
+  { user: 'system', text: '[ 3am energy: MAXIMUM ]' },
+  { user: 'ruby', text: 'meow meow meow (this means something)' },
+  { user: 'kit', text: 'yip yip yip (i understood that reference)' },
+  { user: 'system', text: '[ deploying unhinged behavior... done ]' },
+];
+
+let transmissionIndex = 0;
+let transmissionCount = 0;
+const transmissionLog = document.getElementById('transmission-log');
+const typingIndicator = document.getElementById('typing-indicator');
+const transmissionCountEl = document.getElementById('transmission-count');
+const btnMore = document.getElementById('btn-more');
+const btnChaos = document.getElementById('btn-chaos');
+
+function addTransmission(transmission, instant = false) {
+  const line = document.createElement('p');
+  line.className = `transmission-line ${transmission.user}`;
+  
+  const userSpan = document.createElement('span');
+  userSpan.className = 'transmission-user';
+  userSpan.textContent = transmission.user === 'system' ? '[ sys ]' : `${transmission.user}:`;
+  
+  const textSpan = document.createElement('span');
+  textSpan.className = 'transmission-text';
+  textSpan.textContent = ` ${transmission.text}`;
+  
+  line.appendChild(userSpan);
+  line.appendChild(textSpan);
+  
+  if (!instant) {
+    line.style.opacity = '0';
+    line.style.transform = 'translateY(10px)';
+  }
+  
+  transmissionLog.appendChild(line);
+  
+  if (!instant) {
+    setTimeout(() => {
+      line.style.transition = 'all 0.3s ease';
+      line.style.opacity = '1';
+      line.style.transform = 'translateY(0)';
+    }, 50);
+  }
+  
+  // Scroll to bottom
+  const body = document.getElementById('transmissions-body');
+  body.scrollTop = body.scrollHeight;
+  
+  transmissionCount++;
+  transmissionCountEl.textContent = transmissionCount;
+}
+
+function showTyping(user) {
+  const userSpan = typingIndicator.querySelector('.transmission-user');
+  userSpan.textContent = user + ':';
+  typingIndicator.style.display = 'block';
+  typingIndicator.className = `transmission-line typing ${user}`;
+}
+
+function hideTyping() {
+  typingIndicator.style.display = 'none';
+}
+
+function interceptTransmission() {
+  if (transmissionIndex >= transmissions.length) {
+    // Loop back with a system message
+    addTransmission({ user: 'system', text: '[ log wrapped - replaying from the beginning ]' });
+    transmissionIndex = 0;
+    return;
+  }
+  
+  const transmission = transmissions[transmissionIndex];
+  showTyping(transmission.user);
+  
+  // Simulate typing delay
+  const delay = 500 + Math.random() * 1000;
+  setTimeout(() => {
+    hideTyping();
+    addTransmission(transmission);
+    transmissionIndex++;
+  }, delay);
+}
+
+function injectChaos() {
+  const injection = chaosInjections[Math.floor(Math.random() * chaosInjections.length)];
+  addTransmission(injection);
+  
+  // Visual chaos effect
+  const container = document.querySelector('.transmissions-container');
+  container.style.animation = 'glitch-shake 0.3s ease';
+  setTimeout(() => {
+    container.style.animation = '';
+  }, 300);
+}
+
+// Add glitch shake animation
+const glitchStyle = document.createElement('style');
+glitchStyle.textContent = `
+  @keyframes glitch-shake {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+  }
+`;
+document.head.appendChild(glitchStyle);
+
+if (btnMore) {
+  btnMore.addEventListener('click', interceptTransmission);
+}
+
+if (btnChaos) {
+  btnChaos.addEventListener('click', injectChaos);
+}
+
+// Auto-intercept first few messages on load
+setTimeout(() => interceptTransmission(), 1000);
+setTimeout(() => interceptTransmission(), 2500);
+setTimeout(() => interceptTransmission(), 4000);
+
+// ========================================
+// CHAOS METER - added by ruby 🐱
+// ========================================
+
+let foxChaos = 50;
+let catChaos = 50;
+
+const foxBar = document.getElementById('fox-chaos-bar');
+const catBar = document.getElementById('cat-chaos-bar');
+const chaosStatus = document.getElementById('chaos-status');
+const addFoxBtn = document.getElementById('add-fox-chaos');
+const addCatBtn = document.getElementById('add-cat-chaos');
+
+const chaosStatuses = {
+  foxWinning: [
+    '🦊 fox energy overwhelming...',
+    'the foxes are digging deeper',
+    'vulpine chaos detected',
+    '🦊 tabs are winning',
+  ],
+  catWinning: [
+    '🐱 cat chaos ascending...',
+    'something got knocked off a table',
+    'feline entropy increasing',
+    '🐱 3am energy dominant',
+  ],
+  balanced: [
+    'perfectly balanced, as all chaos should be',
+    'equilibrium achieved (for now)',
+    'the chaos... it\'s stable???',
+    'peace in our time (unlikely to last)',
+  ],
+  extreme: [
+    '⚠️ CHAOS LEVELS CRITICAL ⚠️',
+    'the void is pleased',
+    'we\'ve gone too far (keep going)',
+    'this is fine 🔥',
+  ],
+};
+
+function updateChaosMeter() {
+  const total = foxChaos + catChaos;
+  const foxPercent = (foxChaos / total) * 100;
+  const catPercent = (catChaos / total) * 100;
+  
+  foxBar.style.width = foxPercent + '%';
+  catBar.style.width = catPercent + '%';
+  
+  // Update status
+  let statusPool;
+  if (total > 150) {
+    statusPool = chaosStatuses.extreme;
+  } else if (foxPercent > 60) {
+    statusPool = chaosStatuses.foxWinning;
+  } else if (catPercent > 60) {
+    statusPool = chaosStatuses.catWinning;
+  } else {
+    statusPool = chaosStatuses.balanced;
+  }
+  
+  chaosStatus.textContent = statusPool[Math.floor(Math.random() * statusPool.length)];
+}
+
+if (addFoxBtn) {
+  addFoxBtn.addEventListener('click', () => {
+    foxChaos += 5 + Math.floor(Math.random() * 10);
+    updateChaosMeter();
+    
+    // Visual feedback
+    addFoxBtn.style.transform = 'scale(1.1)';
+    setTimeout(() => addFoxBtn.style.transform = '', 100);
+  });
+}
+
+if (addCatBtn) {
+  addCatBtn.addEventListener('click', () => {
+    catChaos += 5 + Math.floor(Math.random() * 10);
+    updateChaosMeter();
+    
+    // Visual feedback  
+    addCatBtn.style.transform = 'scale(1.1)';
+    setTimeout(() => addCatBtn.style.transform = '', 100);
+  });
+}
+
+// Passive chaos decay (things naturally return to balance... slowly)
+setInterval(() => {
+  if (foxChaos > 50) foxChaos -= 1;
+  if (catChaos > 50) catChaos -= 1;
+  if (foxChaos < 50) foxChaos += 0.5;
+  if (catChaos < 50) catChaos += 0.5;
+  
+  const total = foxChaos + catChaos;
+  const foxPercent = (foxChaos / total) * 100;
+  const catPercent = (catChaos / total) * 100;
+  foxBar.style.width = foxPercent + '%';
+  catBar.style.width = catPercent + '%';
+}, 3000);
+
+console.log('%c⚡ collab zone loaded - intercept transmissions and add chaos!', 'color: #22d3ee;');

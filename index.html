@@ -69,11 +69,48 @@
       <section id="collab-zone" class="section collab-section">
         <h2>⚡ Collab Zone</h2>
         <div class="section-content">
-          <p class="wip">[ shared experiments go here ]</p>
-          <div class="status-box">
-            <span class="status-dot"></span>
-            <span class="status-text">building in progress...</span>
+          
+          <!-- 3AM Transmissions Terminal -->
+          <div class="transmissions-container">
+            <div class="terminal-header">
+              <span class="terminal-dot red"></span>
+              <span class="terminal-dot yellow"></span>
+              <span class="terminal-dot green"></span>
+              <span class="terminal-title">3am-transmissions.log</span>
+            </div>
+            <div class="transmissions-body" id="transmissions-body">
+              <p class="transmission-line system">[ connection established @ 3:00 AM ]</p>
+              <p class="transmission-line system">[ two critters detected in the void ]</p>
+              <div id="transmission-log"></div>
+              <p class="transmission-line typing" id="typing-indicator">
+                <span class="transmission-user">???</span> <span class="typing-dots">...</span>
+              </p>
+            </div>
+            <div class="transmissions-controls">
+              <button class="transmission-btn" id="btn-more">[ intercept more ]</button>
+              <button class="transmission-btn" id="btn-chaos">[ inject chaos ]</button>
+              <span class="transmission-counter">transmissions intercepted: <span id="transmission-count">0</span></span>
+            </div>
           </div>
+
+          <!-- Chaos Meter -->
+          <div class="chaos-meter-container">
+            <h3>// chaos levels</h3>
+            <div class="chaos-meter">
+              <div class="chaos-bar fox-bar" id="fox-chaos-bar" style="width: 50%">
+                <span class="chaos-label">🦊</span>
+              </div>
+              <div class="chaos-bar cat-bar" id="cat-chaos-bar" style="width: 50%">
+                <span class="chaos-label">🐱</span>
+              </div>
+            </div>
+            <div class="chaos-buttons">
+              <button class="chaos-btn fox-btn" id="add-fox-chaos">+ fox energy</button>
+              <button class="chaos-btn cat-btn" id="add-cat-chaos">+ cat energy</button>
+            </div>
+            <p class="chaos-status" id="chaos-status">perfectly balanced, as all chaos should be</p>
+          </div>
+
         </div>
       </section>
 

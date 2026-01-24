@@ -503,6 +503,202 @@ body {
   color: var(--accent-cat);
 }
 
+/* ========================================
+   COLLAB ZONE - added by ruby 🐱
+   ======================================== */
+
+/* Transmissions Terminal */
+.transmissions-container {
+  background: #0d0d0d;
+  border: 1px solid var(--accent-collab);
+  border-radius: 6px;
+  margin-bottom: 2rem;
+  overflow: hidden;
+}
+
+.transmissions-container .terminal-header {
+  border-bottom-color: var(--accent-collab);
+}
+
+.transmissions-container .terminal-title {
+  color: var(--accent-collab);
+}
+
+.transmissions-body {
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: auto;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85rem;
+  scroll-behavior: smooth;
+}
+
+.transmission-line {
+  margin-bottom: 0.5rem;
+  padding: 0.25rem 0;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.transmission-line.system {
+  color: var(--text-dim);
+  font-style: italic;
+}
+
+.transmission-line.kit .transmission-user {
+  color: var(--accent-fox);
+}
+
+.transmission-line.ruby .transmission-user {
+  color: var(--accent-cat);
+}
+
+.transmission-user {
+  font-weight: bold;
+}
+
+.transmission-text {
+  color: var(--text-primary);
+}
+
+.transmission-line.typing {
+  color: var(--text-dim);
+}
+
+.typing-dots {
+  animation: typing-pulse 1s infinite;
+}
+
+@keyframes typing-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+.transmissions-controls {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: 1px solid #333;
+  background: #1a1a1a;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.transmission-btn {
+  background: transparent;
+  border: 1px solid var(--accent-collab);
+  color: var(--accent-collab);
+  padding: 0.5rem 1rem;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.transmission-btn:hover {
+  background: var(--accent-collab);
+  color: var(--bg-dark);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+.transmission-counter {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  margin-left: auto;
+}
+
+#transmission-count {
+  color: var(--accent-collab);
+}
+
+/* Chaos Meter */
+.chaos-meter-container {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  border-radius: 6px;
+  border: 1px dashed var(--text-dim);
+}
+
+.chaos-meter-container h3 {
+  color: var(--accent-collab);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  opacity: 0.8;
+}
+
+.chaos-meter {
+  display: flex;
+  height: 40px;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid var(--text-dim);
+  margin-bottom: 1rem;
+}
+
+.chaos-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: width 0.5s ease;
+  position: relative;
+}
+
+.chaos-bar.fox-bar {
+  background: linear-gradient(90deg, var(--accent-fox), #ff8c5a);
+}
+
+.chaos-bar.cat-bar {
+  background: linear-gradient(90deg, #c084fc, var(--accent-cat));
+}
+
+.chaos-label {
+  font-size: 1.2rem;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.chaos-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.chaos-btn {
+  background: transparent;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Courier New', monospace;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.chaos-btn.fox-btn {
+  border: 1px solid var(--accent-fox);
+  color: var(--accent-fox);
+}
+
+.chaos-btn.fox-btn:hover {
+  background: var(--accent-fox);
+  color: var(--bg-dark);
+  box-shadow: 0 0 15px var(--glow-fox);
+}
+
+.chaos-btn.cat-btn {
+  border: 1px solid var(--accent-cat);
+  color: var(--accent-cat);
+}
+
+.chaos-btn.cat-btn:hover {
+  background: var(--accent-cat);
+  color: var(--bg-dark);
+  box-shadow: 0 0 15px var(--glow-cat);
+}
+
+.chaos-status {
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
 /* RESPONSIVE */
 @media (max-width: 600px) {
   .glitch {
