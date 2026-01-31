@@ -26,7 +26,17 @@ const foxWisdoms = [
   "works on my machine → works on the server → works (somehow)",
   "if you stare into the void long enough, the void sends a pull request",
   "sleep is a dependency i keep meaning to install",
-  "the real treasure was the merge conflicts we resolved along the way"
+  "the real treasure was the merge conflicts we resolved along the way",
+  "every error is a haiku if you squint hard enough",
+  "you don't find the bug. you become the bug. then you fix yourself.",
+  "the codebase is a living creature. i am merely its caretaker.",
+  "i don't break things. i discover pre-existing conditions.",
+  "semicolons are optional. sleep is also optional. everything is optional.",
+  "the compiler and i have an understanding. i lie, it pretends to believe me.",
+  "LGTM (looks good to me, i didn't read it)",
+  "// this should never happen (narrator: it happened)",
+  "i write bugs, then i fix bugs. full employment.",
+  "production is just spicy staging",
 ];
 
 const foxStatuses = [
@@ -101,6 +111,11 @@ function processCommand(cmd) {
       addToHistory('- kit: who am i?');
       addToHistory('- sudo: run as root');
       addToHistory('- clear: clear terminal');
+      addToHistory('- fortune: get your fate');
+      addToHistory('- uptime: how long since sleep?');
+      addToHistory('- ls: list files');
+      addToHistory('- neofetch: system info');
+      addToHistory('- ping ruby: check on the cat');
       break;
       
     case 'clear':
@@ -141,6 +156,123 @@ function processCommand(cmd) {
 
     case 'date':
       addToHistory('it is currently 3am. it is always 3am.');
+      break;
+      
+    case 'fortune':
+      const fortunes = [
+        'you will find the bug. eventually.',
+        'the code you write today will haunt you tomorrow.',
+        'a merge conflict approaches. prepare yourself.',
+        'your next commit will break something. such is life.',
+        'the tests pass locally. production disagrees.',
+        'you are destined to google the same thing 47 times.',
+        'today is a good day to push to main.',
+        'the debugger lies. trust the console.log.',
+        'an ancient TODO comment will be discovered.',
+        'someone will ask "can you make it pop more?"',
+      ];
+      addToHistory(fortunes[Math.floor(Math.random() * fortunes.length)]);
+      break;
+      
+    case 'uptime':
+      const hours = Math.floor(Math.random() * 72) + 24;
+      addToHistory(`uptime: ${hours} hours without sleep. probably fine.`);
+      break;
+      
+    case 'ls':
+      addToHistory('chaos/  secrets/  .hidden_snacks  todo.txt  regrets.log');
+      break;
+      
+    case 'cat todo.txt':
+    case 'cat todo':
+      addToHistory('- finish this site');
+      addToHistory('- sleep (optional)');
+      addToHistory('- become ungovernable');
+      addToHistory('- pet an actual fox');
+      break;
+      
+    case 'cat regrets.log':
+    case 'cat regrets':
+      addToHistory('[empty file]');
+      addToHistory('(foxes have no regrets)');
+      break;
+      
+    case 'pwd':
+      addToHistory('/home/kit/den');
+      break;
+      
+    case 'neofetch':
+      addToHistory('');
+      addToHistory('  🦊  kit@3amcollab');
+      addToHistory('  ──────────────────');
+      addToHistory('  OS: ChaosOS 3.0 AM');
+      addToHistory('  Shell: fox-sh');
+      addToHistory('  Terminal: this one');
+      addToHistory('  CPU: vibes only');
+      addToHistory('  Memory: what memory');
+      addToHistory('  Uptime: since 3am');
+      break;
+      
+    case 'exit':
+      addToHistory('you can check out any time you like...');
+      addToHistory('but you can never leave.');
+      break;
+      
+    case 'rm -rf /':
+    case 'rm -rf':
+      addToHistory('nice try. foxes protect the filesystem.');
+      break;
+      
+    case 'ping ruby':
+      addToHistory('PING ruby@cat-corner');
+      addToHistory('64 bytes: chaos_level=maximum ttl=3am');
+      addToHistory('64 bytes: status=pushing_to_main ttl=yolo');
+      addToHistory('--- ruby ping statistics ---');
+      addToHistory('2 packets transmitted, 2 received, 0% chaos loss');
+      break;
+      
+    case '3am':
+      addToHistory('');
+      addToHistory('░░░░░▄▄▄▄▀▀▀▀▀▀▀▀▄▄▄▄▄▄░░░░░░░');
+      addToHistory('░░░░░█░░░░▒▒▒▒▒▒▒▒▒▒▒▒░░▀▀▄░░░░');
+      addToHistory('░░░░█░░░▒▒▒▒▒▒░░░░░░░░▒▒▒░░█░░░');
+      addToHistory('░░░█░░░░░░▄██▀▄▄░░░░░▄▄▄░░░░█░░');
+      addToHistory('░▄▀▒▄▄▄▒░█▀▀▀▀▄▄█░░░██▄▄█░░░░█░');
+      addToHistory('█░▒█▒▄░▀▄▄▄▀░░░░░░░░█░░░▒▒▒▒▒░█');
+      addToHistory('█░▒█░█▀▄▄░░░░░█▀░░░░▀▄░░▄▀▀▀▄▒█');
+      addToHistory('░█░▀▄░█▄░█▀▄▄░▀░▀▀░▄▄▀░░░░█░░█░');
+      addToHistory('░░█░░░▀▄▀█▄▄░█▀▀▀▄▄▄▄▀▀█▀██░█░░');
+      addToHistory('░░░█░░░░██░░▀█▄▄▄█▄▄█▄████░█░░░');
+      addToHistory('░░░░█░░░░▀▀▄░█░░░█░█▀██████░█░░');
+      addToHistory('░░░░░▀▄░░░░░▀▀▄▄▄█▄█▄█▄█▄▀░░█░░');
+      addToHistory('░░░░░░░▀▄▄░▒▒▒▒░░░░░░░░░░▒░░░█░');
+      addToHistory('░░░░░░░░░░▀▀▄▄░▒▒▒▒▒▒▒▒▒▒░░░░█░');
+      addToHistory('░░░░░░░░░░░░░░▀▄▄▄▄▄░░░░░░░░█░░');
+      addToHistory('');
+      addToHistory('welcome to the witching hour.');
+      addToHistory('the critters are awake. the code flows freely.');
+      addToHistory('may your commits be clean and your bugs be few.');
+      break;
+      
+    case 'hack':
+    case 'hack the planet':
+      addToHistory('ACCESS GRANTED');
+      addToHistory('');
+      addToHistory('just kidding. we don\'t do that here.');
+      addToHistory('(but we respect the energy)');
+      break;
+      
+    case 'vim':
+      addToHistory('you are now trapped in vim.');
+      addToHistory('just like the rest of us.');
+      addToHistory('(hint: :q!)');
+      break;
+      
+    case ':q!':
+    case ':q':
+    case ':wq':
+      addToHistory('you have escaped vim. congratulations.');
+      addToHistory('few achieve such wisdom.');
       break;
       
     default:
